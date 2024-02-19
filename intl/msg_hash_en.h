@@ -31,7 +31,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_QUIT_RETROARCH,
-   "Quit RetroArch. Killing the program in any hard way (SIGKILL, etc.) will terminate RetroArch without saving the configuration, etc. On Unix-likes, SIGINT/SIGTERM allows a clean deinitialisation."
+   "Quit RetroArch. Killing the program in any hard way (SIGKILL, etc.) will terminate RetroArch without saving the configuration in any case. On Unix-likes, SIGINT/SIGTERM allows a clean deinitialisation which includes configuration save if enabled."
    )
 
 /* Main Menu > Load Core */
@@ -136,6 +136,7 @@ MSG_HASH(
 
 /* Settings > Drivers */
 
+
 #ifdef HAVE_MICROPHONE
 #endif
 MSG_HASH(
@@ -172,6 +173,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_SUSPEND_SCREENSAVER_ENABLE,
    "Suspends the screensaver. Is a hint that does not necessarily have to be honoured by the video driver."
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_HELP_VIDEO_BFI_DARK_FRAMES,
+   "Adjusts the number of frames displayed in the BFI sequence that are black. More black frames increases motion clarity but reduces brightness. Not applicable at 120hz as there is only one total extra 60hz frame, so it must be black otherwise BFI would not be active at all."
    )
 #if defined(DINGUX)
 MSG_HASH(
@@ -213,10 +218,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_VIDEO_FILTER_BUILTIN,
    "Apply a CPU-powered video filter. Might come at a high performance cost. Some video filters might only work for cores that use 32-bit or 16-bit colour. Built-in video filter libraries can be selected."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_NOTCH_WRITE_OVER,
-   "Enable full-screen over notch in Android devices"
-)
 
 /* Settings > Video > CRT SwitchRes */
 
@@ -525,6 +526,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_INPUT_TURBO_MODE,
    "Select the general behaviour of turbo mode."
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_INPUT_ALLOW_TURBO_DPAD,
+   "If enabled, digital directional inputs (also known as D-Pad or 'hatswitch') can be turbo."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_INPUT_RETROPAD_BINDS,
@@ -1020,7 +1025,7 @@ MSG_HASH(
 
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "Select an image to set as the menu background."
+   "Select an image to set as menu background. Manual and dynamic images will override 'Colour Theme'."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_USE_PREFERRED_SYSTEM_COLOR_THEME,
@@ -1037,6 +1042,10 @@ MSG_HASH(
 
 /* Settings > AI Service */
 
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
+   "Vertical padding to apply to the text overlay, when the service is in Text mode. More padding will push the text towards the centre of the screen."
+   )
 
 /* Settings > Accessibility */
 
@@ -1220,7 +1229,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_PLAYLIST_SUBLABEL_RUNTIME_TYPE,
    "Select which type of runtime log record to display on playlist sub-labels.\nThe corresponding runtime log must be enabled with the 'Saving' options menu."
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 MSG_HASH(
@@ -1271,10 +1280,6 @@ MSG_HASH(
 
 /* Settings > Directory */
 
-MSG_HASH( /* FIXME Not RGUI specific */
-   MENU_ENUM_LABEL_VALUE_RGUI_CONFIG_DIRECTORY,
-   "Configurations"
-   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORDING_CONFIG_DIRECTORY,
    "Recording Configurations"
@@ -2206,18 +2211,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_GAMEMODE_ENABLE,
    "Enabling Linux GameMode can improve latency, fix audio crackling issues and maximise overall performance by automatically configuring your CPU and GPU for best performance.\nThe GameMode software needs to be installed for this to work. See https://github.com/FeralInteractive/gamemode for information on how to install GameMode."
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
-   "GPU Over-clock"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
-   "Over-clock or under-clock the Switch GPU."
-   )
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "CPU Over-clock"
@@ -2232,6 +2226,14 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "Displays a list of available time zones. After selecting a time zone, time and date is adjusted to the selected time zone. It assumes, that system/hardware clock is set to UTC."
    )
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
+   "CPU Over-clock"
+   )
+#endif
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -105,22 +105,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_HELP_LIST,
    "עזרה"
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "אתחול RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "אתחול יישום."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "יציאה"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "יציאה."
-   )
 
 /* Main Menu > Load Core */
 
@@ -320,6 +304,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_DRIVER,
    "קלט"
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "וידאו"
@@ -361,10 +346,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_DRIVER,
    "תצורת תפריט"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "בחר התקן תצורת תפריט."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
@@ -692,7 +673,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_HISTORY_LIST_ENABLE,
    "היסטוריה"
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 
@@ -822,10 +803,6 @@ MSG_HASH(
 
 /* Quick Menu > Shaders */
 
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "הסר"
-   )
 
 /* Quick Menu > Shaders > Save */
 
@@ -954,12 +931,13 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_RESTART_KEY,
    "אתחול RetroArch"
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 #endif
 #ifdef HAVE_LAKKA
+#ifdef HAVE_LAKKA_SWITCH
+#endif
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 #endif

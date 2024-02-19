@@ -187,23 +187,11 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "Перезапустити RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "Перезапустити програму."
+   "Перезапустити"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "Вихід з RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "Вийти з програми."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_QUIT_RETROARCH,
-   "Вийти з RetroArch. Примусове аварійне вимкнення (SIGKILL, тощо) завершить роботу Retroarch без збереження конфіґурації та ін. На UNIX-подібних системах, SIGINT/SIGTERM справно вимкне програму."
+   "Вихід"
    )
 
 /* Main Menu > Load Core */
@@ -1488,6 +1476,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_JOYPAD_DRIVER,
    "Драйвер контролера для використання."
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "Відео"
@@ -1599,10 +1588,6 @@ MSG_HASH(
    "Меню"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "Драйвер меню для використання."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
    "Запис"
    )
@@ -1690,10 +1675,6 @@ MSG_HASH(
    "Вставка чорного кадра"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_BLACK_FRAME_INSERTION,
-   "Вставляти чорний кадр між кадрами. Корисно на деяких екранах з високою швидкістю оновлення для усунення залишкового зображення."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_GPU_SCREENSHOT,
    "Зняток екрану силами GPU"
    )
@@ -1769,10 +1750,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_FILTER_REMOVE,
    "Вивантажити усі активні ЦП-відеофільтри."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_NOTCH_WRITE_OVER,
-   "Увімкнути повноекранний режим для пристроїв з чубчиком на базі Android"
-)
 
 /* Settings > Video > CRT SwitchRes */
 
@@ -2867,10 +2844,6 @@ MSG_HASH(
    "Обхідний шлях відключення Android"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_ANDROID_INPUT_DISCONNECT_WORKAROUND,
-   "Обхідний шлях для відключення та повторного підключення контролерів. Заважає 2 гравцям з однаковими контролерами."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_PRESS_TWICE,
    "Підтвердити вихід"
    )
@@ -3539,10 +3512,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_FASTFORWARD_RATIO,
    "Частота перемотування"
    )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_FASTFORWARD_FRAMESKIP,
-   "Пропускати кадри відповідно до швидкості перемотування. Це економить енергію і дозволяє використовувати сторонні обмежувачі кадрів."
-   )
 
 /* Settings > Frame Throttle > Rewind */
 
@@ -3991,10 +3960,6 @@ MSG_HASH(
    "Зображення тла"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "Виберіть зображення для тла меню."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
    "Прозорість тла"
    )
@@ -4296,7 +4261,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_MANAGER_LIST,
    "Керувати списками відтворення"
    )
-MSG_HASH(
+   MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MANAGE,
    "Керувати"
    )
@@ -5039,18 +5004,6 @@ MSG_HASH(
    "Відеошейдери"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET,
-   "Завантажити"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_SAVE,
-   "Зберегти"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "Вилучити"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SHADER_APPLY_CHANGES,
    "Застосувати зміни"
    )
@@ -5271,6 +5224,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "Режим Оповідача"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
+   "Верх"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -6988,10 +6945,6 @@ MSG_HASH(
    "Налаштування чита"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Запустити"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "секунди"
    )
@@ -8242,14 +8195,7 @@ MSG_HASH(
    MSG_LOCAL,
    "Місцеві"
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
-   "Розгін GPU"
-   )
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Розгін CPU"
@@ -8272,6 +8218,12 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Виберіть свій часовий пояс, щоб налаштувати дату та час відповідно до вашого місцезнаходження."
    )
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
+   "Розгін CPU"
+   )
+#endif
 MSG_HASH(
    MSG_LOCALAP_ALREADY_RUNNING,
    "Точка доступу Wi-Fi вже запущена"
@@ -8280,6 +8232,8 @@ MSG_HASH(
    MSG_LOCALAP_NOT_RUNNING,
    "Точка доступу Wi-Fi не запущена"
    )
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

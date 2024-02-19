@@ -186,20 +186,8 @@ MSG_HASH(
    "Saiba máis sobre o funcionamento do programa."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "Reiniciar RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "Reiniciar o programa."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "Pechar RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "Pechar o programa."
+   "Saír"
    )
 
 /* Main Menu > Load Core */
@@ -1280,6 +1268,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_JOYPAD_DRIVER,
    "Controlador do telemando de xogo a empregar."
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "Vídeo"
@@ -1333,10 +1322,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_DRIVER,
    "Menú"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "Menú do controlador a usar."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
@@ -1422,10 +1407,6 @@ MSG_HASH(
    "Inserción de Black Frame"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_BLACK_FRAME_INSERTION,
-   "Inserta un cadro en negro entre 2 cadros normais. Útil nalgunhas pantallas de tasa alta de refresco pra eliminar imaxes pantasma."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_GPU_SCREENSHOT,
    "Captura de pantalla da GPU"
    )
@@ -1493,10 +1474,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_FILTER_REMOVE,
    "Desactiva calquera filtro de vídeo alimentado pola CPU."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_NOTCH_WRITE_OVER,
-   "Activa a pantalla completa sobre a muesca nos dispositivos Android"
-)
 
 /* Settings > Video > CRT SwitchRes */
 
@@ -1872,7 +1849,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_SUBLABEL_CORE,
    "Núcleo:"
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 
@@ -2022,10 +1999,6 @@ MSG_HASH(
 
 /* Quick Menu > Shaders */
 
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "Borrar"
-   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SHADER_APPLY_CHANGES,
    "Aplicar os cambios"
@@ -2310,10 +2283,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_RESTART_KEY,
    "Reiniciar RetroArch"
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 #endif
 #ifdef HAVE_LAKKA
 MSG_HASH(
@@ -2332,6 +2302,8 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_LOCALAP_ENABLE,
    "Activar ou desactivar o punto de acceso wifi."
    )
+#ifdef HAVE_LAKKA_SWITCH
+#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Apagando o punto de acceso wifi."
@@ -2340,6 +2312,8 @@ MSG_HASH(
    MSG_WIFI_DISCONNECT_FROM,
    "Desconectando da wifi \"%s\""
    )
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 #endif

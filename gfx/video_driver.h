@@ -415,6 +415,8 @@ typedef struct video_frame_info
    unsigned custom_vp_full_width;
    unsigned custom_vp_full_height;
    unsigned black_frame_insertion;
+   unsigned bfi_dark_frames;
+   unsigned shader_subframes;
    unsigned fps_update_interval;
    unsigned memory_update_interval;
    unsigned msg_queue_delay;
@@ -482,6 +484,7 @@ typedef struct video_frame_info
    bool runloop_is_slowmotion;
    bool runloop_is_paused;
    bool fastforward_frameskip;
+   bool frame_rest;
    bool msg_bgcolor_enable;
    bool crt_switch_hires_menu;
    bool hdr_enable;
@@ -774,6 +777,7 @@ typedef struct
    retro_time_t frame_time_samples[MEASURE_FRAME_TIME_SAMPLES_COUNT];
    uint64_t frame_time_count;
    uint64_t frame_count;
+   uint64_t frame_rest_time_count;
    uint8_t *record_gpu_buffer;
 #ifdef HAVE_VIDEO_FILTER
    rarch_softfilter_t *state_filter;
@@ -859,6 +863,7 @@ typedef struct
    char title_buf[64];
    char cached_driver_id[32];
 
+   uint8_t frame_rest;
    uint8_t frame_delay_target;
    uint8_t frame_delay_effective;
    bool frame_delay_pause;
@@ -1087,7 +1092,16 @@ bool *video_driver_get_threaded(void);
 
 void video_driver_set_threaded(bool val);
 
-void video_frame_delay_auto(video_driver_state_t *video_st, video_frame_delay_auto_t *vfda);
+void video_frame_delay(video_driver_state_t *video_st,
+      settings_t *settings,
+      bool core_paused);
+
+void video_frame_delay_auto(video_driver_state_t *video_st,
+      video_frame_delay_auto_t *vfda);
+
+void video_frame_rest(video_driver_state_t *video_st,
+      settings_t *settings,
+      retro_time_t current_time);
 
 /**
  * video_context_driver_init:

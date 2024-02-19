@@ -195,23 +195,11 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "إعادة تشغيل رترو أرك"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "يعيد تشغيل البرنامج."
+   "إعادة التشغيل"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "مغادرة البرنامج"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "مغادرة البرنامج."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_QUIT_RETROARCH,
-   "إنهاء RetroArch. قتل البرنامج بأي طريقة صعبة (SIGKILL، إلخ. سيتم إنهاء RetroArch دون حفظ التكوين، إلخ. على أحب يونكس، يسمح SIGINT/SIGTERM بإزالة التشكيلات النظيفة."
+   "خروج"
    )
 
 /* Main Menu > Load Core */
@@ -613,6 +601,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CPU_ARCHITECTURE,
    "بنية وحدة المعالجة المركزية"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_CPU_CORES,
+   "نَوَيات المُعالِجْ"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SYSTEM_INFO_FRONTEND_IDENTIFIER,
@@ -1153,6 +1145,14 @@ MSG_HASH(
    "ملف الإعدادات."
    )
 MSG_HASH(
+   MENU_ENUM_LABEL_HELP_FILE_BROWSER_SHADER_PRESET,
+   "مِلف الإعدادات المسبقة للمظلل."
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_HELP_FILE_BROWSER_SHADER,
+   "مِلف المظلل."
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_HELP_FILE_BROWSER_CHEAT,
    "ملف الغش."
    )
@@ -1340,6 +1340,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_JOYPAD_DRIVER,
    "مشغل Joypad للاستخدام."
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "نظام تشغيل الفيديو"
@@ -1447,10 +1448,6 @@ MSG_HASH(
    "نظام تشغيل القائمة"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "مشغل القائمة لاستخدامه."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
    "نظام تشغيل التسجيل"
    )
@@ -1542,10 +1539,6 @@ MSG_HASH(
    "إدراج الإطار الأسود"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_BLACK_FRAME_INSERTION,
-   "إدراج إطار أسود بين الأطر. مفيد على بعض شاشات معدل التحديث العالي للقضاء على التشبح فالشاشات."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_GPU_SCREENSHOT,
    "لقطة شاشة GPU"
    )
@@ -1560,11 +1553,11 @@ MSG_HASH(
 #if defined(DINGUX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_IPU_FILTER_TYPE,
-   "إستيفاء الصورة"
+   "استيفاء الصورة"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_DINGUX_IPU_FILTER_TYPE,
-   "تحديد طريقة استخراج الصور عند قياس المحتوى عن طريق ال IPU. \"ثنائي تكعيبي\" او \"ثنائي خطي\" ينصح عند استخدام فلاتر الفيديو التي تعمل بالمعالج. هذا الخيار ليس له تأثير على الأداء."
+   "تحديد طريقة استخراج الصور عند قياس المحتوى عن طريق IPU. \"ثنائي تكعيبي\" أو \"ثنائي خطي\" ينصح عند استخدام فلاتر الفيديو التي تعمل بالمعالج. هذا الخِيار ليس له تأثير على الأداء."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_IPU_FILTER_BICUBIC,
@@ -1581,7 +1574,11 @@ MSG_HASH(
 #if defined(RS90) || defined(MIYOO)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_RS90_SOFTFILTER_TYPE,
-   "إستيفاء الصورة"
+   "استيفاء الصورة"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_VIDEO_DINGUX_RS90_SOFTFILTER_TYPE,
+   "حدد طريقة استيفاء الصورة عندما يكونُ الخِيار 'تحجيم صحيح' معطل. أما 'أقرب جار' هو الأقل تأثيرًا على الأداء."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_RS90_SOFTFILTER_POINT,
@@ -1617,10 +1614,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_FILTER_REMOVE,
    "إلغاء تحميل أي فلتر فيديو نشط يعمل على المعالج."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_NOTCH_WRITE_OVER,
-   "تمكين ملء الشاشة فوق النوتش في أجهزة الأندرويد"
-)
 
 /* Settings > Video > CRT SwitchRes */
 
@@ -2523,6 +2516,14 @@ MSG_HASH(
    "القرص السابق"
    )
 
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_INPUT_META_SHADER_TOGGLE,
+   "المظلل (تبديل)"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_INPUT_META_SHADER_TOGGLE,
+   "تفعيل/تعطيل المظلل الحالي."
+   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_SHADER_NEXT,
    "المشهد التالي"
@@ -3739,6 +3740,14 @@ MSG_HASH( /* FIXME Not RGUI specific */
 
 /* Settings > User Interface > Menu Item Visibility > Quick Menu */
 
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_QUICK_MENU_SHOW_SHADERS,
+   "إظهار 'الأظلال'"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_QUICK_MENU_SHOW_SHADERS,
+   "إظهار خيارات 'الأظلال'."
+   )
 
 /* Settings > User Interface > Views > Settings */
 
@@ -4144,7 +4153,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_PLAYLIST_PORTABLE_PATHS,
    "عند التمكين، ويتم أيضا تحديد دليل 'مستعرض الملف'، يتم حفظ القيمة الحالية للمعلمة 'مستعرض الملف' في قائمة التشغيل. عندما يتم تحميل قائمة التشغيل على نظام آخر حيث يتم تمكين نفس الخيار، تتم مقارنة قيمة المعلمة 'مستعرض الملف' مع قيمة قائمة التشغيل؛ إذا كان الأمر مختلفاً، يتم تلقا[...]"
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 MSG_HASH(
@@ -5179,24 +5188,12 @@ MSG_HASH(
    "مشاهدة ملفات شاهر للتغييرات"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET,
-   "تحميل"
-   )
-MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET,
    "تحميل معالج مسبقًا. سيتم إعداد خط أنابيب المعالج تلقائياً."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_SAVE,
-   "حفظ"
-   )
-MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_SAVE,
    "حفظ الإعداد المسبق للعرض الحالي."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "إزالة"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_REMOVE,
@@ -5515,6 +5512,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "وضع المشرف"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
+   "أعلى"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -7452,10 +7453,6 @@ MSG_HASH(
    "بدء أو مواصلة البحث عن الغش"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "تشغيل"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "ثواني"
    )
@@ -9085,10 +9082,6 @@ MSG_HASH(
    "فشل في تعيين القرص"
    )
 MSG_HASH(
-   MSG_FAILED_TO_SET_INITIAL_DISK,
-   "فشل في تعيين القرص المستعمل الأخير..."
-   )
-MSG_HASH(
    MSG_CHEEVOS_LOAD_STATE_PREVENTED_BY_HARDCORE_MODE,
    "يجب عليك إيقاف أو تعطيل الوضع الصعب للإنجازات لتحميل الحالات."
    )
@@ -9530,18 +9523,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "زيادة أو تقليل سطوع الشاشة."
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
-   "GPU فوق الساعة"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
-   "تبديل GPU على مدار الساعة أو تحت الساعة."
-   )
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "تجاوز الساعة المعالج"
@@ -9600,6 +9582,12 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "يعرض قائمة بالمناطق الزمنية المتاحة. بعد تحديد منطقة زمنية، يتم تعديل الوقت والتاريخ إلى المنطقة الزمنية المحددة. ويفترض أن ساعة النظام/المعدات محددة على UTC."
    )
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
+   "تجاوز الساعة المعالج"
+   )
+#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "إيقاف تشغيل نقطة وصول Wi-Fi."
@@ -9636,6 +9624,8 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "ملف تكوين خاطئ - تعذر العثور على APNAME أو PASSWORD في %s"
    )
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

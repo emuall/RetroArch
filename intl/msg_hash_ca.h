@@ -195,23 +195,11 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "Reinicia el RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "Reinicia el programa."
+   "Reinicia"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "Tanca el RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "Surt del programa."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_QUIT_RETROARCH,
-   "Tanca RetroArch. Si tanques el programa d'una manera forçada (SIGKILL, etc.) RetroArch no desarà les configuracions, etc. En sistemes Unix, SIGNIT/SIGTERM permet un tancament net."
+   "Surt"
    )
 
 /* Main Menu > Load Core */
@@ -1344,6 +1332,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_JOYPAD_DRIVER,
    "Tipus de comandament de joc que es farà servir."
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "Vídeo"
@@ -1405,10 +1394,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_DRIVER,
    "Menú"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "Tria el tipus d'entorn gràfic del menú que es farà servir."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
@@ -1498,10 +1483,6 @@ MSG_HASH(
    "Insereix fotogrames negres"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_BLACK_FRAME_INSERTION,
-   "Insereix un fotograma negre entre fotogrames. És útil en algunes pantalles amb una taxa de refresc alta per eliminar el ghosting."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_GPU_SCREENSHOT,
    "Captura de pantalla de la GPU"
    )
@@ -1577,10 +1558,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_FILTER_REMOVE,
    "Elimina qualsevol filtre de vídeo per CPU actiu."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_NOTCH_WRITE_OVER,
-   "Habilita la pantalla completa als dispositius Android amb osca"
-)
 
 /* Settings > Video > CRT SwitchRes */
 
@@ -2645,10 +2622,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_ANDROID_INPUT_DISCONNECT_WORKAROUND,
    "Solució per les desconnexions d’Android"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_ANDROID_INPUT_DISCONNECT_WORKAROUND,
-   "Evita que els comandaments es desconnectin i es reconnectin contínuament. Impedeix que 2 jugadors facin servir comandaments idèntics."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_PRESS_TWICE,
@@ -4501,10 +4474,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Sortida del servei d’IA"
    )
-MSG_HASH( /* FIXME What does the Narrator mode do? */
-   MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Mostra la traducció com una superposició de text (mode d’imatge) o reprodueix-la com a «text a parla» (mode de parla)."
-   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
    "URL del servei d’IA"
@@ -4804,7 +4773,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_PLAYLIST_PORTABLE_PATHS,
    "Quan s’activa i també se selecciona el directori del «navegador de fitxers», el valor actual del paràmetre «navegador de fitxers» es desa a la llista de reproducció. Quan es carrega la llista en un altre sistema on s’hagi activat la mateixa opció, el valor del paràmetre «navegador de fitxers» es compara amb el valor de la llista de reproducció; si són diferents els camins de les entrades de la llista s’arreglen automàticament."
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 MSG_HASH(
@@ -4910,18 +4879,6 @@ MSG_HASH(
 MSG_HASH( /* FIXME Not RGUI specific */
    MENU_ENUM_LABEL_VALUE_RGUI_BROWSER_DIRECTORY,
    "Navegador d'Arxius"
-   )
-MSG_HASH( /* FIXME Not RGUI specific */
-   MENU_ENUM_SUBLABEL_RGUI_BROWSER_DIRECTORY,
-   "Estableix el directori inicial pel navegador de fitxers."
-   )
-MSG_HASH( /* FIXME Not RGUI specific */
-   MENU_ENUM_LABEL_VALUE_RGUI_CONFIG_DIRECTORY,
-   "Arxius de configuració"
-   )
-MSG_HASH( /* FIXME Not RGUI specific */
-   MENU_ENUM_SUBLABEL_RGUI_CONFIG_DIRECTORY,
-   "Estableix el directori inicial pel navegador de configuracions de menú."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_LIBRETRO_DIR_PATH,
@@ -5707,40 +5664,12 @@ MSG_HASH(
    "Shaders de Vídeo"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET,
-   "Carrega"
-   )
-MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET,
    "Carrega un shader predefinit. El pipeline de shaders es configurarà automàticament."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_PREPEND,
-   "Avantposar"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_PREPEND,
-   "Avantposar preconfiguració a la carregada actualment"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_APPEND,
-   "Annexar"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_APPEND,
-   "Annexar preconfiguració a la carregada actualment"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_SAVE,
-   "Desa"
-   )
-MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_SAVE,
    "Desa el shader predefinit actual."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "Elimina"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_SHADER_PRESET_REMOVE,
@@ -6882,10 +6811,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CHEAT_SEARCH_SETTINGS,
    "Comença o continua la cerca de trucs"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Executa"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -8138,18 +8063,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Augmenta o redueix la brillantor de la pantalla."
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
-   "Força la GPU"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
-   "Augmenta o redueix la velocitat de rellotge de la GPU de la Switch."
-   )
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Força la CPU"
@@ -8196,6 +8110,12 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Seleccioneu la zona horària per ajustar la data i l’hora a la vostra ubicació."
    )
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
+   "Força la CPU"
+   )
+#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "S’està apagant el punt d’accés Wi-Fi."
@@ -8232,6 +8152,8 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Fitxer de configuració erroni — no s’han trobat APNAME ni PASSWORD a %s"
    )
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

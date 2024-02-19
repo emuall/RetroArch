@@ -353,30 +353,36 @@ static void frontend_darwin_get_env(int *argc, char *argv[],
    CFStringGetCString(bundle_path, bundle_path_buf, sizeof(bundle_path_buf), kCFStringEncodingUTF8);
    CFRelease(bundle_path);
    CFRelease(bundle_url);
-
-#if HAVE_STEAM
-   /* For Steam, we're going to put everything next to the .app */
-   fill_pathname_application_data(documents_dir_buf, sizeof(documents_dir_buf));
-#else
-   CFSearchPathForDirectoriesInDomains(documents_dir_buf, sizeof(documents_dir_buf));
-#if TARGET_OS_IPHONE
-   char resolved_documents_dir_buf[PATH_MAX_LENGTH] = {0};
-   char resolved_bundle_dir_buf[PATH_MAX_LENGTH] = {0};
-   if (realpath(documents_dir_buf, resolved_documents_dir_buf))
-      strlcpy(documents_dir_buf,
-               resolved_documents_dir_buf,
-               sizeof(documents_dir_buf));
-   if (realpath(bundle_path_buf, resolved_bundle_dir_buf))
-      strlcpy(bundle_path_buf,
-            resolved_bundle_dir_buf,
-            sizeof(bundle_path_buf));
-#endif
-   strlcat(documents_dir_buf, "/RetroArch", sizeof(documents_dir_buf));
-#endif
+   path_resolve_realpath(bundle_path_buf, sizeof(bundle_path_buf), true);
 
 #if defined(OSX)
    fill_pathname_application_data(application_data, sizeof(application_data));
+
+   BOOL portable; /* steam || RAPortableInstall || portable.txt */
+#if HAVE_STEAM
+   /* For Steam, we're going to put everything next to the .app */
+   portable = YES;
 #else
+   portable = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"RAPortableInstall"] boolValue];
+   if (!portable)
+   {
+      char portable_buf[PATH_MAX_LENGTH] = {0};
+      fill_pathname_join(portable_buf, application_data, "portable.txt", sizeof(portable_buf));
+      portable = path_is_valid(portable_buf);
+   }
+#endif
+   if (portable)
+      strncpy(documents_dir_buf, application_data, sizeof(documents_dir_buf));
+   else
+   {
+      CFSearchPathForDirectoriesInDomains(documents_dir_buf, sizeof(documents_dir_buf));
+      path_resolve_realpath(documents_dir_buf, sizeof(documents_dir_buf), true);
+      strlcat(documents_dir_buf, "/RetroArch", sizeof(documents_dir_buf));
+   }
+#else
+   CFSearchPathForDirectoriesInDomains(documents_dir_buf, sizeof(documents_dir_buf));
+   path_resolve_realpath(documents_dir_buf, sizeof(documents_dir_buf), true);
+   strlcat(documents_dir_buf, "/RetroArch", sizeof(documents_dir_buf));
    /* iOS and tvOS are going to put everything in the documents dir */
    strncpy(application_data, documents_dir_buf, sizeof(application_data));
 #endif
@@ -474,19 +480,8 @@ static void frontend_darwin_get_env(int *argc, char *argv[],
          temp_dir,
          sizeof(g_defaults.dirs[DEFAULT_DIR_CACHE]));
 
-   path_mkdir(bundle_path_buf);
-
-   if (access(bundle_path_buf, 0755) != 0) { }
-   else
-   {
-      path_mkdir(g_defaults.dirs[DEFAULT_DIR_SYSTEM]);
-
-      if (access(g_defaults.dirs[DEFAULT_DIR_SYSTEM], 0755) != 0) { }
-   }
-
-#ifndef IS_SALAMANDER
-   dir_check_defaults("custom.ini");
-#endif
+   if (!path_is_directory(g_defaults.dirs[DEFAULT_DIR_MENU_CONFIG]))
+      path_mkdir(g_defaults.dirs[DEFAULT_DIR_MENU_CONFIG]);
 }
 
 static int frontend_darwin_get_rating(void)
@@ -889,10 +884,9 @@ static bool is_narrator_running_macos(void)
 }
 
 static bool accessibility_speak_macos(int speed,
-      const char* speak_text, int priority)
+      const char* speak_text, int priority, const char* voice)
 {
    int pid;
-   const char *voice      = get_user_language_iso639_1(false);
    char* language_speaker = accessibility_mac_language_code(voice);
    char* speeds[10]       = {"80",  "100", "125", "150", "170", "210",
                              "260", "310", "380", "450"};

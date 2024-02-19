@@ -162,20 +162,8 @@ MSG_HASH(
    "Læs mere om, hvordan programmet virker."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "Genstart RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "Genstart programmet."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "Afslut RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "Afslut programmet."
+   "Luk"
    )
 
 /* Main Menu > Load Core */
@@ -888,6 +876,7 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_JOYPAD_DRIVER,
    "Controller driver der skal bruges."
    )
+
 MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_DRIVER,
    "Videodriver der skal bruges."
@@ -933,10 +922,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_LOCATION_DRIVER,
    "Placeringsdriver der skal bruges."
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_DRIVER,
-   "Menudriver der skal bruges."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RECORD_DRIVER,
@@ -1204,7 +1189,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_SUBLABEL_CORE,
    "Kerne:"
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 
@@ -1462,12 +1447,13 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_RESTART_KEY,
    "Genstart RetroArch"
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 #endif
 #ifdef HAVE_LAKKA
+#ifdef HAVE_LAKKA_SWITCH
+#endif
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 #endif

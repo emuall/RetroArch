@@ -796,6 +796,23 @@ static void check_proc_acpi_sysfs_battery(const char *node,
       }
    }
 
+   fill_pathname_join_special(path, basenode, "type", sizeof(path));
+
+   if (!filestream_exists(path))
+      goto status;
+
+   if (filestream_read_file(path, (void**)&buf, &length) != 1)
+      goto status;
+
+    if (buf)
+   {
+      if (strstr((char*)buf, "Battery"))
+      *have_battery = true;
+      free(buf);
+      buf = NULL;
+   }
+
+status:
    fill_pathname_join_special(path, basenode, "status", sizeof(path));
 
    if (!filestream_exists(path))
@@ -2771,13 +2788,108 @@ static bool is_narrator_running_unix(void)
    return (kill(speak_pid, 0) == 0);
 }
 
+static const char* accessibility_unix_language_code(const char* language)
+{
+   if (
+         string_is_equal(language, "en") ||
+         string_is_equal(language, "it") ||
+         string_is_equal(language, "sv") ||
+         string_is_equal(language, "fr") ||
+         string_is_equal(language, "de") ||
+         string_is_equal(language, "he") ||
+         string_is_equal(language, "id") ||
+         string_is_equal(language, "es") ||
+         string_is_equal(language, "nl") ||
+         string_is_equal(language, "ro") ||
+         string_is_equal(language, "th") ||
+         string_is_equal(language, "ja") ||
+         string_is_equal(language, "sk") ||
+         string_is_equal(language, "hi") ||
+         string_is_equal(language, "ar") ||
+         string_is_equal(language, "hu") ||
+         string_is_equal(language, "el") ||
+         string_is_equal(language, "ru") ||
+         string_is_equal(language, "nb") ||
+         string_is_equal(language, "da") ||
+         string_is_equal(language, "fi") ||
+         string_is_equal(language, "tr") ||
+         string_is_equal(language, "ko") ||
+         string_is_equal(language, "pl") ||
+         string_is_equal(language, "cs") ||
+         string_is_equal(language, "eo") ||
+         string_is_equal(language, "vi") ||
+         string_is_equal(language, "fa") ||
+         string_is_equal(language, "uk") ||
+         string_is_equal(language, "be") ||
+         string_is_equal(language, "hr") ||
+         string_is_equal(language, "bg") ||
+         string_is_equal(language, "bn") ||
+         string_is_equal(language, "eu") ||
+         string_is_equal(language, "az") ||
+         string_is_equal(language, "sq") ||
+         string_is_equal(language, "af") ||
+         string_is_equal(language, "et") ||
+         string_is_equal(language, "ka") ||
+         string_is_equal(language, "gu") ||
+         string_is_equal(language, "ht") ||
+         string_is_equal(language, "is") ||
+         string_is_equal(language, "ga") ||
+         string_is_equal(language, "kn") ||
+         string_is_equal(language, "la") ||
+         string_is_equal(language, "lv") ||
+         string_is_equal(language, "lt") ||
+         string_is_equal(language, "mk") ||
+         string_is_equal(language, "ms") ||
+         string_is_equal(language, "mt") ||
+         string_is_equal(language, "sr") ||
+         string_is_equal(language, "sl") ||
+         string_is_equal(language, "sw") ||
+         string_is_equal(language, "ta") ||
+         string_is_equal(language, "te") ||
+         string_is_equal(language, "ur") ||
+         string_is_equal(language, "cy")
+      )
+      return language;
+   else if (
+         string_is_equal(language, "no") ||
+         string_is_equal(language, "nb")
+      )
+      return "nb";
+   else if (string_is_equal(language, "en_gb"))
+      return "en-gb";
+   else if (
+         string_is_equal(language, "ca") ||
+         string_is_equal(language, "ca_ES@valencia")
+      )
+      return "ca";
+   else if (
+         string_is_equal(language, "pt_pt") ||
+         string_is_equal(language, "pt")
+      )
+      return "pt";
+   else if (string_is_equal(language, "pt_bt"))
+      return "pt-br";
+   else if (
+         string_is_equal(language, "zh") ||
+         string_is_equal(language, "zh_cn") ||
+         string_is_equal(language, "zh_tw") ||
+         string_is_equal(language, "zh-CN") ||
+         string_is_equal(language, "zh-TW")
+      )
+      return "cmn";
+   else if (string_is_equal(language, "zh_hk"))
+      return "yue";
+   /* default voice as fallback */
+   return "en";
+}
+
 static bool accessibility_speak_unix(int speed,
-      const char* speak_text, int priority)
+      const char* speak_text, int priority, const char* voice)
 {
    int pid;
-   const char *language   = get_user_language_iso639_1(true);
-   char* voice_out        = (char*)malloc(3+strlen(language));
-   char* speed_out        = (char*)malloc(3+3);
+   const char* language   = accessibility_unix_language_code(voice);
+   char* voice_out        = (char*)malloc(3 + strlen(language));
+   char* speed_out        = (char*)malloc(3 + 3);
    const char* speeds[10] = {"80", "100", "125", "150", "170", "210", "260", "310", "380", "450"};
 
    if (speed < 1)
@@ -2788,7 +2900,7 @@ static bool accessibility_speak_unix(int speed,
    voice_out[0] = '-';
    voice_out[1] = 'v';
    voice_out[2] = '\0';
-   strlcat(voice_out, language, 5);
+   strlcat(voice_out, language, 3 + strlen(language));
 
    speed_out[0] = '-';
    speed_out[1] = 's';
@@ -2810,28 +2922,32 @@ static bool accessibility_speak_unix(int speed,
    }
 
    pid = fork();
-   if (pid < 0)
+   switch (pid)
    {
-      /* error */
-      RARCH_LOG("ERROR: could not fork for espeak.\n");
-   }
-   else if (pid > 0)
-   {
-      /* parent process */
-      speak_pid = pid;
+      case 0:
+         {
+            /* child process: replace process with the espeak command */
+            char* cmd[] = { (char*) "espeak", NULL, NULL, NULL, NULL };
+            cmd[1] = voice_out;
+            cmd[2] = speed_out;
+            cmd[3] = (char*)speak_text;
+            execvp("espeak", cmd);
 
-      /* Tell the system that we'll ignore the exit status of the child
-       * process.  This prevents zombie processes. */
-      signal(SIGCHLD,SIG_IGN);
-   }
-   else
-   {
-      /* child process: replace process with the espeak command */
-      char* cmd[] = { (char*) "espeak", NULL, NULL, NULL, NULL};
-      cmd[1] = voice_out;
-      cmd[2] = speed_out;
-      cmd[3] = (char*)speak_text;
-      execvp("espeak", cmd);
+            RARCH_WARN("Could not execute espeak.\n");
+            /* Prevent interfere with the parent process */
+            _exit(EXIT_FAILURE);
+         }
+      case -1:
+         RARCH_ERR("Could not fork for espeak.\n");
+      default:
+         {
+            /* parent process */
+            speak_pid = pid;
+
+            /* Tell the system that we'll ignore the exit status of the child
+             * process.  This prevents zombie processes. */
+            signal(SIGCHLD, SIG_IGN);
+         }
    }
 
 end:

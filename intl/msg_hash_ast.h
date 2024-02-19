@@ -146,20 +146,8 @@ MSG_HASH(
    "Conoz más tocante a cómo funciona'l programa."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RESTART_RETROARCH,
-   "Reaniciar Retroarch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_RESTART_RETROARCH,
-   "Reanicia'l programa."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_QUIT_RETROARCH,
-   "Colar de RetroArch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUIT_RETROARCH,
-   "Cola del programa."
+   "Colar"
    )
 
 /* Main Menu > Load Core */
@@ -437,6 +425,10 @@ MSG_HASH( /* FIXME Maybe add a description? */
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SYSTEM_INFO_POWER_SOURCE,
    "Fonte enerxética"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SYSTEM_INFO_VIDEO_CONTEXT_DRIVER,
+   "Controlador del contestu de videu"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SYSTEM_INFO_DISPLAY_METRIC_MM_WIDTH,
@@ -924,6 +916,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_DRIVER,
    "Entrada"
    )
+
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DRIVER,
    "Videu"
@@ -1832,7 +1825,7 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_PORTABLE_PATHS,
    "Llistes portátiles"
    )
-
+   
 /* Settings > Playlists > Playlist Management */
 
 MSG_HASH(
@@ -2353,18 +2346,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_SHADERS_ENABLE,
    "Asolombradores de videu"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET,
-   "Cargar"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_SAVE,
-   "Guardar"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_SHADER_PRESET_REMOVE,
-   "Quitar"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SHADER_APPLY_CHANGES,
@@ -3312,10 +3293,6 @@ MSG_HASH(
    "Puertu"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Executar"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "segundos"
    )
@@ -3762,10 +3739,7 @@ MSG_HASH(
    MSG_READ_ONLY,
    "Estáu del almacenamientu internu: namás llectura"
    )
-
-#ifdef HAVE_LAKKA_SWITCH
-#endif
-#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
+#ifdef HAVE_LIBNX
 #endif
 #ifdef HAVE_LAKKA
 MSG_HASH(
@@ -3788,6 +3762,8 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_TIMEZONE,
    "Fusu horariu"
    )
+#ifdef HAVE_LAKKA_SWITCH
+#endif
 MSG_HASH(
    MSG_LOCALAP_NOT_RUNNING,
    "El puntu d'accesu Wi-Fi nun ta n'execución"
@@ -3800,6 +3776,8 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "El ficheru de configuración ye incorreutu - nun se pudo atopar APNAME o PASSWORD en %s"
    )
+#endif
+#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 #endif
